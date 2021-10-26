@@ -1,0 +1,52 @@
+public class Main
+{
+     int partition(int a[], int s, int l)
+    {
+        int pivot = a[l]; 
+        int i = (s-1); 
+        for (int j=s; j<l; j++)
+        {
+            if (a[j] <= pivot)
+            {
+                i++;
+                
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+        int temp = a[i+1];
+        a[i+1] = a[l];
+        a[l] = temp;
+  
+        return i+1;
+    }
+   void sort(int a[], int s, int l)
+    {
+        if (s< l)
+        {
+            
+            int pi = partition(a, s, l);
+            sort(a, s, pi-1);
+            sort(a,pi+1,l);
+        }
+    }
+     static void printArray(int a[])
+    {
+        int n = a.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(a[i]+" ");
+        System.out.println();
+    }
+    
+	public static void main(String[] args) {
+	int a[] = {18, 9, 30, 17, 23, 19};
+        int n = a.length;
+  
+        Main obj = new Main();
+        obj.sort(a, 0, n-1);
+  
+        System.out.println("The sorted array is :");
+        printArray(a);
+}
+}
